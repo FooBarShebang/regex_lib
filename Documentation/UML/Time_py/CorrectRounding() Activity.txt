@@ -1,0 +1,35 @@
+@startuml
+
+title Activity Diagram of the Function regex_lib.Time.CorrectRounding()
+
+start
+
+:<b>Hour</b> - integer, hours, assumed to be in the range 0 - 24 inclusively
+<b>Minute</b> - integer, minutes, assumed to be in the range 0 - 60 inclusively
+<b>Second</b> - integer, seconds, assumed to be in the range 0 - 60 inclusively<
+
+:<b>DateIncrement</b> = False;
+
+if (<b>Second</b> == 60?) then (True)
+    :<b>Second</b> = 0;
+    
+    :<b>Minute</b>++;
+    
+    if (<b>Minute</b> == 60?) then (True)
+        :<b>Minute</b> = 0;
+        
+        :<b>Hour</b>++;
+        
+        if (<b>Hour</b> == 24?) then (True)
+            :<b>Hour</b> = 0;
+            
+            :<b>DateIncrement</b> = True;
+        endif
+    endif
+endif
+
+:return <b>Hour</b>, <b>Minute</b>, <b>Second</b>, <b>DateIncrement</b> >
+
+stop
+
+@enduml

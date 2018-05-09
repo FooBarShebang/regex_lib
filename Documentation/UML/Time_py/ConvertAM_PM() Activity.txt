@@ -1,0 +1,35 @@
+@startuml
+
+title Activity Diagram of the Function regex_lib.Time.ConvertAM_PM()
+
+start
+
+:<b>Match</b> - instance of regex match class re.MatchObject, supposedly for SHORT_TIME_PATTERN or TIME_PATTERN<
+
+:extract hours from the match as <b>Hour</b> = int(<b>Match</b>.group('hour'));
+
+:extract am/pm modifier from the match (if present) as <b>Modifier</b> = <b>Match</b>.group('modifier');
+
+if (<b>Modifier</b> is None (not present)?) then (True)
+    :<b>Result</b> = <b>Hour</b> ;
+else (False)
+    if (<b>Hour</b> == 0 OR > 12?) then (True)
+        :<b>Result</b> = None;
+    elseif (<b>Modifier</b> starts with 'P') then (True)
+        if (<b>Hour</b> < 12?) then (True)
+            :<b>Result</b> = <b>Hour</b> + 12;
+        else (False)
+            :<b>Result</b> = <b>Hour</b> ;
+        endif
+    elseif (<b>Hour</b> == 12?) then (True)
+        :<b>Result</b> = 0 ;
+    else (False)
+        :<b>Result</b> = <b>Hour</b> ;
+    endif
+endif
+
+:return <b>Result</b> >
+
+stop
+
+@enduml

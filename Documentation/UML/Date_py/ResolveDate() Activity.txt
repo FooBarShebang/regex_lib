@@ -1,0 +1,35 @@
+@startuml
+
+title Activity Diagram of the Function regex_lib.Date.ResolveDate()
+
+start
+
+:Stamp - string, date stamp to be resolved<
+
+if (Stamp is not a string?) then (True)
+    :raise TypeError exception;
+    
+    stop
+else (False)
+    while (for Pattern in ISO_DATE, REVERSED_DATE,\nSCREWED_DATE, SHORT_DATE, COMPACT_DATE)
+        if (Stamp matches Pattern as (Match = Pattern.match(Stamp)) != None?) then (True)
+            :extract Year, Month and Day from the Match as Match.group('year'), Match.group('month') and Match.group('day');
+            
+            if (Year < 100?) then (Yes)
+                :add 2000 to the Year;
+            endif
+            
+            :form ISO date stamp 'YYYY-MM-DD' from Year, Month and Day using zero padding when required;
+            
+            :return the formed ISO date stamp>
+            
+            stop
+        endif
+    end while
+    
+    :return None>
+    
+    stop
+endif
+
+@enduml

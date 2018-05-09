@@ -1,0 +1,47 @@
+@startuml
+
+title Components Diagram of the Date.py Patterns
+
+[YEAR_PATTERN] <-- [ISO_DATE]
+
+[MONTH_PATTERN] <-- [ISO_DATE]
+
+[DAY_PATTERN] <-- [ISO_DATE]
+
+[DATE_SEPARATOR] <-- [ISO_DATE]
+
+[ISO_DATE] <.. [C_ISO_DATE] : compiled
+
+[YEAR_PATTERN] <-- [REVERSED_DATE]
+
+[MONTH_PATTERN] <-- [REVERSED_DATE]
+
+[DAY_PATTERN] <-- [REVERSED_DATE]
+
+[DATE_SEPARATOR] <-- [REVERSED_DATE]
+
+[REVERSED_DATE] <.. [C_REVERSED_DATE] : compiled
+
+[C_SCREWED_DATE] ..> [SCREWED_DATE] : compiled
+
+[SCREWED_DATE] --> [YEAR_PATTERN]
+
+[SCREWED_DATE] --> [MONTH_PATTERN]
+
+[SCREWED_DATE] --> [DAY_PATTERN]
+
+[SCREWED_DATE] --> [DATE_SEPARATOR]
+
+[C_COMPACT_DATE] ..> [COMPACT_DATE] : compiled
+
+[COMPACT_DATE] --> [YEAR_PATTERN]
+
+[C_SHORT_DATE] ..> [SHORT_DATE] : compiled
+
+[SHORT_DATE] --> [DATE_SEPARATOR]
+
+[SHORT_DATE] --> [MONTH_PATTERN]
+
+[SHORT_DATE] --> [DAY_PATTERN]
+
+@enduml

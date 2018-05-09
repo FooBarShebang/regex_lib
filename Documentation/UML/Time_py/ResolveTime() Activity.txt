@@ -1,0 +1,81 @@
+@startuml
+
+title Activity Diagram of the Function regex_lib.Time.ResolveTime()
+
+start
+
+:Stamp - string, time stamp to be resolved<
+
+if (Stamp is not a string?) then (True)
+    :raise TypeError exception;
+    
+    stop
+else (False)
+    :<b>IncrementDate</b> = False;
+    
+    :convert Stamp into upper case;
+    
+    :match Stamp vs TIME_PATTERN reg.exp.;
+    
+    if (matched?) then (Yes)
+        :extract <b>Hour</b> from match and correct for am/pm,
+        see function regex_lib.Time.ConvertAM_PM()|
+        
+        if (<b>Hour</b> is not None?) then (True)
+            :extract <b>Minute</b> from the match's group 'minute';
+            
+            :extract <b>Second</b> from the match's group 'second'
+            and round it to an integer number;
+            
+            :correct the time for the rounding of the seconds and
+            check if the date must be incremented as
+            <b>Hour</b>, <b>Minute</b>, <b>Second</b>, <b>IncrementDate</b> =
+            regex_lib.Time.CorrectRounding(<b>Hour</b>, <b>Minute</b>, <b>Second</b>)|
+            
+            :form ISO string time-stamp from the match's
+            <b>Hour</b>, <b>Minute</b> and <b>Second</b> as 'HH:MM:SS'
+            using zero padding when required -> <b>Result</b> ;
+        else (False)
+            :<b>Result</b> = None;
+        endif
+    else (No)
+        :match Stamp vs SHORT_TIME_PATTERN reg.exp.;
+        
+        if (matched?) then (Yes)
+            :extract <b>Hour</b> from match and correct for am/pm,
+            see function regex_lib.Time.ConvertAM_PM()|
+            
+            if (<b>Hour</b> is not None?) then (True)
+                :form ISO string time-stamp from <b>Hour</b> and
+                the match's group 'minute' as 'HH:MM:00'
+                using zero padding when required -> <b>Result</b> ;
+            else (False)
+                :<b>Result</b> = None;
+            endif
+        else (No)
+            :match Stamp vs COMPACT_TIME_PATTERN reg.exp.;
+            
+            if (matched?) then (Yes)
+                :form ISO string time-stamp from the match's
+                groups 'hour', 'minute' and 'second'
+                as 'HH:MM:SS' -> <b>Result</b> ;
+            else (No)
+                :match Stamp vs COMPACT_TIME_PATTERN reg.exp.;
+                
+                if (matched?) then (Yes)
+                    :form ISO string time-stamp from the match's
+                    groups 'hour' and 'minute' as 'HH:MM:00'
+                    -> <b>Result</b> ;
+                else (No)
+                    :<b>Result</b> = None;
+                endif
+            endif
+        endif
+    endif
+    
+    :return <b>Result</b>, <b>IncrementDate</b> >
+    
+    stop
+endif
+
+@enduml
