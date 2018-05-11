@@ -153,7 +153,7 @@ TestSuite.addTests([TestSuite1])
 #execution entry point
 
 if __name__ == "__main__":
-    sys.stdout.write("Preparing regex_lib.Date.ResolveTime() tests...\n")
+    sys.stdout.write("Preparing regex_lib.Time.ResolveTime() tests...\n")
     sys.stdout.flush()
     unittest.TextTestRunner(verbosity = 2).run(TestSuite)
     sys.stdout.flush()
