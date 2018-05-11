@@ -11,7 +11,7 @@ E.g.
 
 ## Usage examples
 ### regex_lib.Date
-~~~
+~~~python
 from regex_lib.Date import ResolveDate
 
 strDate = ResolveDate('20180509') # -> '2018-05-09'
@@ -33,7 +33,7 @@ ResolveDate('2018-055-09') # wrong format! -> None
 ResolveDate(20180101) # not a string! -> TypeError exception
 ~~~
 ### regex_lib.Time
-~~~
+~~~python
 from regex_lib.Time import ResolveTime
 
 strTime, bDateIncrement = ResolveTime('1448') # -> '14:48:00', False
