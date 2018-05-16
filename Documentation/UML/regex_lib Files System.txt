@@ -1,0 +1,39 @@
+@startuml
+
+salt
+{
+    {T
+    <&folder> regex_lib
+    + <&folder> Documentation
+    ++ <&folder> UML
+    +++ <&folder> Date_py
+    ++++ <&image> Date Patterns Components Diagram.png
+    ++++ <&code> Date Patterns Components Diagram.txt
+    ++++ <&image> ResolveDate() Activity.png
+    ++++ <&code> ResolveDate() Activity.txt
+    +++ <&folder> Templates
+    ++++ <&code> Components.cuml
+    +++ <&folder> Time_py
+    ++++ <&image> CovertAM_PM() Activity.png
+    ++++ <&code> CovertAM_PM() Activity.txt
+    ++++ <&image> CorrectRounding() Activity.png
+    ++++ <&code> CorrectRounding() Activity.txt
+    ++++ <&image> ResolveTime() Activity.png
+    ++++ <&code> ResolveTime() Activity.txt
+    ++++ <&image> Time Patterns Components Diagram.png
+    ++++ <&code> Time Patterns Components Diagram.txt
+    +++ <&image> regex_lib Components Diagram.png
+    +++ <&code> regex_lib Components Diagram.txt
+    +++ <&image> regex_lib Files System.png
+    +++ <&code> regex_lib Files System.txt
+    ++ <&document> regex_lib.Date.py Reference and Manual.odt
+    ++ <&document> regex_lib.Time.py Reference and Manual.odt
+    + <&folder> Tests
+    ++ <&script> UT001_Date_ResolveDate.py
+    ++ <&script> UT002_Time_ResolveTime.py
+    + <&script> **Date.py**
+    + <&script> **Time.py**
+    + <&info> Releases log.txt
+    }
+}
+@enduml
