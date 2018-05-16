@@ -60,7 +60,7 @@ else (False)
                 groups 'hour', 'minute' and 'second'
                 as 'HH:MM:SS' -> <b>Result</b> ;
             else (No)
-                :match Stamp vs COMPACT_TIME_PATTERN reg.exp.;
+                :match Stamp vs SHORT_COMPACT_TIME_PATTERN reg.exp.;
                 
                 if (matched?) then (Yes)
                     :form ISO string time-stamp from the match's

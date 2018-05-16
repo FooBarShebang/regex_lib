@@ -1,0 +1,43 @@
+@startuml
+
+title Components Diagram of the Library regex_lib
+
+!ifndef COMPONENTS
+!include ./Templates/Components.cuml
+!endif
+
+library(regex_lib) {
+    module(Date) {
+        component "Reg.Exp.Patrn." as Pat1
+        
+        component "Compiled Patrn." as Comp1
+        
+        Pat1 <-- Comp1
+        
+        function(ResolveDate)
+        
+        Comp1 <-- ResolveDate
+    }
+    
+    module(Time) {
+        component "Reg.Exp.Patrn." as Pat2
+        
+        component "Compiled Patrn." as Comp2
+        
+        Pat2 <-- Comp2
+        
+        function(ResolveTime)
+        
+        Comp2 <-- ResolveTime
+        
+        function(CorrectRounding)
+        
+        function(ConvertAM_PM)
+        
+        ResolveTime --> CorrectRounding
+        
+        ResolveTime --> ConvertAM_PM
+    }
+}
+
+@enduml
