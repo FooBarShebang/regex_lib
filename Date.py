@@ -34,19 +34,11 @@ Compiled patterns:
 Functions:
     ResolveDate()
         str -> str OR None
-        
-        Extracts and converts allowed formats into the ISO format 'YYYY-MM-DD'
-
-Version 0.3.20180509
 """
 
-__author__ = "Anton Azarov"
-__copyright__ = "(c) 2014-2018 Diagnoptics Technologies B.V."
-__license__ = "GPL"
-__version__ = "0.3.20180509"
-__date__ = "09-05-2018"
+__version__ = "0.1.0.0"
+__date__ = "26-10-2018"
 __status__ = "Production"
-__maintainer__ = "a.azarov@diagnoptics.com"
 
 #imports
 
@@ -115,15 +107,17 @@ def ResolveDate(strStamp):
     expression patterns in the following order:
         ISO_DATE, REVERSED_DATE, SCREWED_DATE, SHORT_DATE, COMPACT_DATE
     
-    Returns the resolved date stamp as a string in ISO format 'YYYY-MM-DD' or
-    None value if none of the patterns is matched.
-    
-    Raises TypeError if the passed argument is not a string.
-    
     Signature:
         str -> str OR None
     
-    Version 0.2.20180509
+    Returns:
+        str: the resolved date stamp as a string in ISO format 'YYYY-MM-DD'
+        None: value of none of the patterns is matched.
+    
+    Raises:
+        TypeError: if the passed argument is not a string.
+    
+    Version 0.1.0.0
     """
     if not isinstance(strStamp, basestring):
         strError = '{} of {} is not a string'.format(strStamp, type(strStamp))

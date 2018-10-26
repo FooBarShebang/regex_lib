@@ -1,17 +1,19 @@
-# regex_lib
-Regular expression based locale-independend data processing with Python
+# Library regex_lib
 
-E.g.
-* string date stamps with the different year, month, day order and separators
-* string time stamps with or without seconds and miliseconds parts, as well as in 24-h or 12-h clock notation
+## Purpose
 
-## Structure
-* Date.py - date stamps regular expression patterns and patterns aggregation function ResolveDate()
-* Time.py - time stamps regular expression patterns and patterns aggregation function ResolveTime()
+Set of regular expression patterns and functions for the aggregated patterns based search / resolution based locale-independend data processing with Python.
 
-## Usage examples
+## Structure and Documentation
+
+* Module [Date](./Date.py). Documentation [UD001](./Documentation/UD001_Date_Reference.md)
+* Module [Time](./Time.py). Documentation [UD002](./Documentation/UD002_Time_Reference.md)
+
+## Usage
+
 ### regex_lib.Date
-~~~python
+
+```python
 from regex_lib.Date import ResolveDate
 
 strDate = ResolveDate('20180509') # -> '2018-05-09'
@@ -31,9 +33,11 @@ ResolveDate('1 9_15.2018date') # Month, day, year! -> '2018-09-15'
 ResolveDate('2018-055-09') # wrong format! -> None
 
 ResolveDate(20180101) # not a string! -> TypeError exception
-~~~
+```
+
 ### regex_lib.Time
-~~~python
+
+```python
 from regex_lib.Time import ResolveTime
 
 strTime, bDateIncrement = ResolveTime('1448') # -> '14:48:00', False
@@ -63,4 +67,4 @@ ResolveTime('10:50:03.4pm') # -> '22:50:03', False
 ResolveTime('12:14:60') # wrong format! -> None, False
 
 ResolveTime(121459) # not a string! -> TypeError exception
-~~~
+```

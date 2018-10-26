@@ -1,12 +1,14 @@
 # Library regex_lib Release Log
 
-## Version 0.3.20180509
+## 2018-10-26 version 0.1.0.0
+
+Switched to another versioning scheme and Markdown documentation.
+
+## Version 0.4.20180516
 
 Implemented functionality is fully tested (see unit tests in the Tests subfolder) and documented.
 
 ### Module Date.py
-
-At version 0.3.20180509
 
 Date stamps resolution and conversion into ISO 'YYYY-MM-DD' format. Supported input formats are:
 
@@ -18,10 +20,7 @@ Date stamps resolution and conversion into ISO 'YYYY-MM-DD' format. Supported in
 
 ### Module Time.py
 
-At version 0.2.20180509
-
 Time stamps resolution and conversion into ISO 'HH:MM:SS' format. Supported input formats are:
 
 * {H}H:{M}M{:{S}S{.ms}}{AM|PM}
 * HHMM{SS}
-

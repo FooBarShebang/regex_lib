@@ -29,34 +29,18 @@ Compiled patterns:
     C_SHORT_TIME_PATTERN, C_TIME_PATTERN, C_COMPACT_TIME_PATTERN,
     C_SHORT_COMPACT_TIME_PATTERN
 
-Main function:
+Functions:
     ResolveTime()
         str -> str OR None, bool
-        
-        Extracts and converts allowed formats into the ISO 'HH:MM:SS' format
-
-Helper functions:
     ConvertAM_PM()
         re.MatchObject -> int OR None
-        
-        Extracts and converts hours when required from 12-h into 24-h clock
-    
     CorrectRounding()
         int, int, int -> int, int, int, bool
-        
-        Properly handles seconds, minutes and hours change due to the seconds
-        rounding, including date change due to the swinging over zero
-
-Version 0.2.20180509
 """
 
-__author__ = "Anton Azarov"
-__copyright__ = "(c) 2014-2018 Diagnoptics Technologies B.V."
-__license__ = "GPL"
-__version__ = "0.2.20180509"
-__date__ = "09-05-2018"
+__version__ = "0.1.0.0"
+__date__ = "26-10-2018"
 __status__ = "Production"
-__maintainer__ = "a.azarov@diagnoptics.com"
 
 #imports
 
@@ -127,13 +111,14 @@ def ConvertAM_PM(objMatch):
     a match object, supposedly for SHORT_TIME_PATTERN or TIME_PATTERN, in any
     case with the defined groups 'hour' and 'modifier'.
     
-    Returns hour in 24-h clock, if the representation was correct, or None
-    otherwise.
-    
     Signature:
         re.MatchObject -> int OR None
     
-    Version 0.1.20180509
+    Returns:
+        int: hour in 24-h clock, if the representation was correct
+        None: otherwise
+    
+    Version 0.1.0.0
     """
     iHour = int(objMatch.group('hour'))
     gModifier = objMatch.group('modifier')
@@ -165,16 +150,17 @@ def CorrectRounding(iHour, iMinute, iSecond):
     Signature:
         int, int, int -> int, int, int, bool
     
-    Input:
-        iHour - integer, hours, assumed to be in the range 0 - 24 inclusively
-        iMinutes - integer, minutes, assumed to be in the range 0 - 60 incl.
-        iSeconds - integer, seconds, assumed to be in the range 0 - 60 incl.
+    Args:
+        iHour: int, hours, assumed to be in the range 0 - 24 inclusively
+        iMinutes: int, minutes, assumed to be in the range 0 - 60 incl.
+        iSeconds: int, seconds, assumed to be in the range 0 - 60 incl.
     
-    Returns an unpacked tuple of 3 integers (as the corrected for the swinging
-    over zero hours, minutes and seconds) and a boolean flag if the date should
-    be incremented by 1 day.
+    Returns:
+        tuple(int, int, int, bool): an unpacked tuple of 3 integers (as the
+            corrected for the swinging over zero hours, minutes and seconds) and
+            a boolean flag if the date should be incremented by 1 day.
     
-    Version 0.1.20180509
+    Version 0.1.0.0
     """
     _iHour = iHour
     _iMinute = iMinute
@@ -202,13 +188,6 @@ def ResolveTime(strStamp):
     integer, which may cause swinging over zero of the seconds (60 -> 00) and
     incrementing of the minutes; and so on including the hours.
     
-    Returns the resolved time stamp as a string in ISO format 'HH:MM:SS' or
-    None value if none of the patterns is matched; and the boolean flag if the
-    date must be incremented due to rounding up of the seconds, i.e. 23:59:59.5
-    -> 00:00:00 of the next day.
-    
-    Raises TypeError if the passed argument is not a string.
-    
     See also helper functions:
         ConvertAM_PM()
         CorrectRounding()
@@ -216,7 +195,17 @@ def ResolveTime(strStamp):
     Signature:
         str -> str OR None, bool
     
-    Version 0.2.20180509
+    Returns:
+        tuple(str, bool): unpacked tuple, the resolved time stamp as a string in
+            ISO format 'HH:MM:SS' and the boolean flag if the date must be
+            incremented due to rounding up of the seconds, i.e. 23:59:59.5
+            -> 00:00:00 of the next day.
+        tuple(None, bool): unpacked tuple, if none of the patterns is matched
+    
+    Raises:
+        TypeError: if the passed argument is not a string.
+    
+    Version 0.1.0.0
     """
     if not isinstance(strStamp, basestring):
         strError = '{} of {} is not a string'.format(strStamp, type(strStamp))

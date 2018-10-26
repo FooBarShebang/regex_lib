@@ -1,4 +1,4 @@
-@startuml
+@startuml time_correctrounding
 
 title Activity Diagram of the Function regex_lib.Time.CorrectRounding()
 

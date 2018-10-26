@@ -1,4 +1,4 @@
-@startuml
+@startuml regex_lib_components
 
 title Components Diagram of the Library regex_lib
 
